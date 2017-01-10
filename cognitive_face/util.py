@@ -105,6 +105,35 @@ def parse_image(image):
         a three-item tuple consist of HTTP headers, binary data and json data
         for POST.
     """
+    headers = {'Content-Type': 'application/octet-stream'}
+    data = image
+    return headers, data, None
+    #if hasattr(image, 'read'):  # When image is a file-like object.
+        #headers = {'Content-Type': 'application/octet-stream'}
+        #data = image.read()
+        #return headers, data, None
+    #elif os.path.isfile(image):  # When image is a file path.
+        #headers = {'Content-Type': 'application/octet-stream'}
+        #data = open(image, 'rb').read()
+        #return headers, data, None
+    #else:  # Defailt treat it as a URL (string).
+        #headers = {'Content-Type': 'application/json'}
+        #json = {'url': image}
+
+
+'''def parse_image(image):
+    """Parse the image smartly and return metadata for request.
+
+    First check whether the image is a URL or a file path or a file-like object
+    and return corresponding metadata.
+
+    Args:
+        image: A URL or a file path or a file-like object represents an image.
+
+    Returns:
+        a three-item tuple consist of HTTP headers, binary data and json data
+        for POST.
+    """
     if hasattr(image, 'read'):  # When image is a file-like object.
         headers = {'Content-Type': 'application/octet-stream'}
         data = image.read()
@@ -116,8 +145,7 @@ def parse_image(image):
     else:  # Defailt treat it as a URL (string).
         headers = {'Content-Type': 'application/json'}
         json = {'url': image}
-        return headers, None, json
-
+        return headers, None, json'''
 
 def wait_for_training(person_group_id):
     """Wait for the finish of person_group training."""
